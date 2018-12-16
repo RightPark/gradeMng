@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmd">
+
+
+	<select id="getMemberInfo" parameterType="map" resultType="cmd.vo.CmdVO">
+		/* 사용자 정보 조회 */
+		SELECT
+						userNo
+						,username
+						,password
+						
+						
+		FROM
+						user 
+			
+		WHERE 	
+				1=1
+				<if test="userNo != null and userNo != ''">
+				AND userNo = #{userNo}
+				</if>
+				<if test="username != null and username != ''">
+				AND username = #{username}
+				</if>
+				<if test="password !=null and password != ''">
+				AND password = #{password}
+				</if>
+				
+				
+						
+	</select>
+	
+	
+
+	
+	<select id="get_info_list" parameterType="map" resultType="cmd.vo.CmdVO">
+		
+		SELECT year, term, SUM(grade) as grade from grade GROUP BY term 
+		
+						
+	</select>
+	
+	<select id="get_info_Detail" parameterType="map" resultType="cmd.vo.CmdVO">
+		
+		SELECT * from grade where year = #{year} AND term = #{term} 
+		
+						
+	</select>
+	<insert id="insert_apply" parameterType="map" >
+
+		INSERT INTO
+					apply
+					(
+						name
+						
+					)
+		VALUES
+					(
+						#{name}
+						
+					)
+	</insert>
+	
+	
+	<select id="get_apply_list" parameterType="map" resultType="cmd.vo.CmdVO">
+		
+		SELECT * from apply
+		
+						
+	</select>
+
+	
+	
+</mapper>
