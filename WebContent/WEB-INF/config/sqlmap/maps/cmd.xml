@@ -36,7 +36,7 @@
 	
 	<select id="get_info_list" parameterType="map" resultType="cmd.vo.CmdVO">
 		
-		SELECT year, term, SUM(grade) as grade from grade GROUP BY term 
+		SELECT year, term, SUM(grade) as grade from grade GROUP BY year,term 
 		
 						
 	</select>
